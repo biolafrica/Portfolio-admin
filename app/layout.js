@@ -1,5 +1,7 @@
 import { Manrope} from "next/font/google";
 import "./globals.css";
+import LayoutBody from "./components/nav/layoutBody";
+
 
 
 const manrope = Manrope({
@@ -17,7 +19,7 @@ export default function RootLayout({ children }) {
   return (
     <html>
       <body className={manrope.className}>
-        {children}
+        <LayoutBody children={children}/>
       </body>
     </html>
   );

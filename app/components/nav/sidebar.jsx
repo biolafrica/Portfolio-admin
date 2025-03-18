@@ -1,5 +1,7 @@
-import { useState, useEffect } from "react"
+"use client"
+
 import Link from "next/link"
+import { useEffect, useState } from "react"
 
 export default function SideNav({changeHeader}){
   const [activeTab, setActiveTab] = useState("Dashboard")
@@ -13,13 +15,13 @@ export default function SideNav({changeHeader}){
     setActiveTab("Dashboard")
   }
   const handleProjectClick =()=>{
-    setActiveTab("Staff")
+    setActiveTab("Project")
   }
   const handleBlogClick =()=>{
-    setActiveTab("Team")
+    setActiveTab("Blog")
   }
   const handleUserClick =()=>{
-    setActiveTab("Attendance")
+    setActiveTab("User")
   }
 
 
@@ -29,7 +31,7 @@ export default function SideNav({changeHeader}){
       <div className="side-nav">
 
         <Link 
-          href=""
+          href="/"
           className={`dashboard ${activeTab === "Dashboard" ? "active" : ""}`} 
           onClick={handleDashboardClick}
         >
@@ -38,7 +40,7 @@ export default function SideNav({changeHeader}){
         </Link>
 
         <Link 
-          href=""
+          href="/project"
           className={`project ${activeTab === "Staff" ? "active" : ""}`}  
           onClick={handleProjectClick}
         >
@@ -47,7 +49,7 @@ export default function SideNav({changeHeader}){
         </Link>
 
         <Link 
-          href=""
+          href="/blog"
           className={`blog ${activeTab === "Team" ? "active" : ""}`} 
           onClick={handleBlogClick}
         >
@@ -56,7 +58,7 @@ export default function SideNav({changeHeader}){
         </Link>
 
         <Link 
-          href=""
+          href="/user"
           className={`user ${activeTab === "Attendance" ? "active" : ""}`} 
           onClick={handleUserClick}
         >
