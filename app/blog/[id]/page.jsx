@@ -1,10 +1,11 @@
 import AddBlogForm from "@/app/components/common/addBlogForm"
 
-export default function NewBlog(){
+export default function EditBlog(){
   return(
     <>
-      <h4 style={{textAlign: "center"}}>Add blog post</h4>
+      <h4 style={{textAlign: "center"}}>Edit blog post</h4>
       <AddBlogForm/>
     </>
   )
+
 }

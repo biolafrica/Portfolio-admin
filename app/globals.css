@@ -459,7 +459,8 @@ a {
   padding: 20px 30px;
 }
 
-.addblog-form{
+.addblog-form,
+.add-blog-form{
   padding: 30px;
   border-radius: 10px;
   width: 70%;
@@ -471,6 +472,9 @@ a {
   margin: 10px auto;
   z-index: 1;
 }
+
+/*new project css*/
+
 
 
 @media(min-width:769px) and (max-width:1200px) {
