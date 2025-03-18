@@ -83,7 +83,8 @@ h2,
 h3,
 h4,
 h5,
-h6 {
+h6,
+a{
   margin: 0;
   padding: 0;
 }
@@ -136,7 +137,7 @@ input[type="time"]::-webkit-calendar-picker-indicator {
   align-items: center;
   font-size: 16px;
   letter-spacing: 0.5px;
-  font-weight: 200;
+  font-weight: 500;
   gap: 8px;
   border: #f0fff6;
   background-color: #2aa874;
@@ -163,6 +164,12 @@ input[type="time"]::-webkit-calendar-picker-indicator {
 
 }
 
+a{
+  margin: 0;
+  padding: 0;
+
+
+}
 .sec-btn {
   padding: 12px 20px 12px 16px;
   border-radius: 8px;
@@ -415,6 +422,30 @@ a {
 .user-cont-body-footer h5,
 .blog-cont-body-footer h5 {
   cursor: pointer;
+}
+
+/*authentication*/
+.auth-form{
+  padding: 40px;
+  border-radius: 10px;
+  box-shadow: var(--elevate-1);
+  margin: 100px auto;
+  width: 40%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  border: 1px solid var(--Border-dark);
+}
+
+.login-cont h4{
+  text-align: center;
+}
+
+.auth-form button{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
 }
 
 @media(min-width:769px) and (max-width:1200px) {

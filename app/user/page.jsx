@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default function User(){
   return(
 
@@ -5,7 +7,7 @@ export default function User(){
 
       <div className="user-cont-head">
         <h3>users</h3>
-        <button className="pri-btn">Add user</button>
+        <Link href="/register" className="pri-btn">Add user</Link>
       </div>
 
       <div className="user-cont-body">
