@@ -4,7 +4,6 @@ export default function Login(){
   return(
     <div className="login-cont">
       <AuthForm state="login"/>
-      
     </div>
   )
 }

@@ -19,7 +19,7 @@ export default function RootLayout({ children }) {
   return (
     <html>
       <body className={manrope.className}>
-        <LayoutBody children={children}/>
+        <LayoutBody>{children}</LayoutBody>
       </body>
     </html>
   );

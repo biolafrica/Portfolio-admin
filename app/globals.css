@@ -280,8 +280,8 @@ a {
   right: 0;
   left: 0;
   top: 0;
-  background-color: rgba(255, 255, 255, 0.1);
-  z-index: 1;
+  background-color: black;
+  z-index: 1000;
 }
 
 .adminavbar_cont .right_container {
@@ -447,6 +447,31 @@ a {
   justify-content: center;
   width: 100%;
 }
+
+.login-layout-cont{
+  background-color: var(--Layout-Background-dark);
+}
+
+/*new blog css*/
+.addblog-cont{
+  display: flex;
+  gap: 20px;
+  padding: 20px 30px;
+}
+
+.addblog-form{
+  padding: 30px;
+  border-radius: 10px;
+  width: 70%;
+  box-sizing: border-box;
+  border: 1px solid var(--Border-dark);
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  margin: 10px auto;
+  z-index: 1;
+}
+
 
 @media(min-width:769px) and (max-width:1200px) {
 
