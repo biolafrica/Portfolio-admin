@@ -209,7 +209,7 @@ a {
 /*side bar css*/
 .sidebar-cont {
   padding: 40px;
-  border: 1px solid var(--Seperator-light);
+  border: 1px solid var(--Seperator-dark);
   width: 25%;
   position: fixed;
   top: 90px;
@@ -248,15 +248,76 @@ a {
 .project:hover,
 .blog:hover,
 .user:hover{
-  background-color: black;
-  color: white;
+  background-color: var(--Layout-Background-light);
   border-radius: 5px;
 }
 
 .active {
-  background-color: black;
-  color: white;
+  background-color: var(--Layout-Background-light);
   border-radius: 5px;
+}
+
+/*header css*/
+
+.adminavbar_cont {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 40px;
+  border-bottom: 1px solid var(--Seperator-dark);
+  position: fixed;
+  right: 0;
+  left: 0;
+  top: 0;
+  background-color: white;
+  z-index: 1;
+}
+
+.adminavbar_cont .right_container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 75%;
+}
+
+.adminavbar_cont .left_container {
+  width: 25%;
+}
+
+.left_container img {
+  width: 48px;
+  height: 48px;
+}
+
+.side-logo img {
+  height: 36px;
+  width: 36px;
+}
+
+.side-logo {
+  margin-bottom: 50px;
+}
+
+.right-adminav {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.right-icon {
+  border: 1px solid var(--Border-dark);
+  padding: 5px;
+  border-radius: 50px;
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+}
+
+.right-logout {
+  display: flex;
+  align-items: center;
+  row-gap: 15px;
+  cursor: pointer;
 }
 
 @media(min-width:769px) and (max-width:1200px) {

@@ -12,21 +12,16 @@ export default function SideNav({changeHeader}){
   const handleDashboardClick =()=>{
     setActiveTab("Dashboard")
   }
-  const handleStaffClick =()=>{
+  const handleProjectClick =()=>{
     setActiveTab("Staff")
   }
-  const handleTeamClick =()=>{
+  const handleBlogClick =()=>{
     setActiveTab("Team")
   }
-  const handleAttendanceClick =()=>{
+  const handleUserClick =()=>{
     setActiveTab("Attendance")
   }
-  const handlePayrollClick =()=>{
-    setActiveTab("Payroll")
-  }
-  const handleSettingsClick =()=>{
-    setActiveTab("Settings")
-  }
+
 
   return(
     <div className="sidebar-cont">
@@ -45,7 +40,7 @@ export default function SideNav({changeHeader}){
         <Link 
           href=""
           className={`project ${activeTab === "Staff" ? "active" : ""}`}  
-          onClick={handleStaffClick}
+          onClick={handleProjectClick}
         >
           <img src="/icons/project.svg" alt="project icon" />
           <h4>Project</h4>
@@ -54,7 +49,7 @@ export default function SideNav({changeHeader}){
         <Link 
           href=""
           className={`blog ${activeTab === "Team" ? "active" : ""}`} 
-          onClick={handleTeamClick}
+          onClick={handleBlogClick}
         >
           <img src="/icons/blog.svg" alt="blog icon" />
           <h4>Blog</h4>
@@ -63,7 +58,7 @@ export default function SideNav({changeHeader}){
         <Link 
           href=""
           className={`user ${activeTab === "Attendance" ? "active" : ""}`} 
-          onClick={handleAttendanceClick}
+          onClick={handleUserClick}
         >
           <img src="/icons/user.svg" alt="user icon" />
           <h4>Users</h4>
