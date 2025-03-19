@@ -1,5 +1,6 @@
 import Link from "next/link";
 import LogoutButton from "../common/logoutButton";
+import UserIcon from "../common/userIcon";
 
 
 export default function AdminNav({header}){
@@ -21,10 +22,7 @@ export default function AdminNav({header}){
 
         <div className="right-adminav">
           
-          <Link href="" className="right-icon">
-            <h4>AB</h4>
-          </Link>
-
+          <UserIcon/>
           <LogoutButton/>
 
         </div>

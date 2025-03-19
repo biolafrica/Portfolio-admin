@@ -1,6 +1,11 @@
 import Link from "next/link";
+import fetchUser from "@/app/utils/supabase/fetchUser";
 
-export default function Blog(){
+export default async function Blog(){
+
+  const data = await fetchUser();
+  console.log(data.user.user_metadata.name);
+
   return(
     <div className="blog-cont">
 
