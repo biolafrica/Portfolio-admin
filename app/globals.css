@@ -269,7 +269,8 @@ a {
   border-radius: 5px;
 }
 
-.not-found{
+.not-found,
+.redirect{
   text-align: center;
   margin: 200px auto;
 }
