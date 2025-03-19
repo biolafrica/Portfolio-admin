@@ -9,18 +9,18 @@ export default function AuthForm({state}){
       {state === "register" && (
         <label htmlFor="name">
           <h5>Full Name</h5>
-          <input type="text" name="name" />
+          <input type="text" name="name" required/>
         </label>
       )}
 
       <label htmlFor="email">
         <h5>Email Address</h5>
-        <input type="email" name="email" />
+        <input type="email" name="email" required/>
       </label>
 
       <label htmlFor="password">
         <h5>Password</h5>
-        <input type="password" name="password" />
+        <input type="password" name="password" required/>
       </label>
 
       {state === "register" ?(<button className="pri-btn">Register</button>):(<button className="pri-btn">Login</button>) }
