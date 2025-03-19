@@ -3,11 +3,17 @@
 import { createClient } from "@/app/utils/supabase/client";
 import { useRouter } from "next/navigation";
 import { useState } from "react"
+import useForm from "@/app/hooks/useForm";
 
 export default function AuthForm({state}){
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const initialValues = {
+    name : "",
+    email: "",
+    password: ""
+  }
+
+  const {formData, handleInputChange, resetForm}= useForm(initialValues);
+
   const [errorMessage, setErrorMessage]=useState("");
   const router = useRouter();
 
@@ -19,26 +25,30 @@ export default function AuthForm({state}){
 
     if(state === "register"){
 
-      const{error} = await supabase.auth.signUp({email, password,
+      const{error} = await supabase.auth.signUp({
+        email: formData.email, password: formData.password,
         options:{
         data:{
-          name,
+          name: formData.name,
         }
       }});
 
       if(error){
         return setErrorMessage(error.message);
       }
+
       router.push("/auth/verify")
+      resetForm();
 
     }else{
-      const {error} = await supabase.auth.signInWithPassword({email, password});
+      const {error} = await supabase.auth.signInWithPassword({email:formData.email, password:formData.password});
 
       if(error){
         return setErrorMessage(error.message)
       }
 
       router.push("/")
+      resetForm();
     }
   }
 
@@ -55,8 +65,8 @@ export default function AuthForm({state}){
           <input 
             type="text" 
             name="name" 
-            value={name}
-            onChange={(e)=>setName(e.target.value)}
+            value={formData.name}
+            onChange={handleInputChange}
             required
           />
         </label>
@@ -68,8 +78,8 @@ export default function AuthForm({state}){
           type="email" 
           name="email" 
           required
-          value={email}
-          onChange={(e)=>setEmail(e.target.value)}
+          value={formData.email}
+          onChange={handleInputChange}
         />
       </label>
 
@@ -79,8 +89,8 @@ export default function AuthForm({state}){
           type="password" 
           name="password" 
           required
-          value={password}
-          onChange={(e)=>setPassword(e.target.value)}
+          value={formData.password}
+          onChange={handleInputChange}
         />
       </label>
 

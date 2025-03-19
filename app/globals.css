@@ -221,12 +221,8 @@ a {
 
 .error{
   color: red;
-  padding: 15px;
+  padding: 10px;
   text-align: center;
-  box-sizing: border-box;
-  border-radius: 5px;
-  transform: translateX(4px);
-  
 }
 /*side bar css*/
 .sidebar-cont {
