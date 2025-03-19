@@ -3,7 +3,6 @@ import "./globals.css";
 import LayoutBody from "./components/nav/layoutBody";
 
 
-
 const manrope = Manrope({
   variable: "--font-manrope",
   subsets: ["latin"],

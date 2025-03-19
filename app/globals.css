@@ -219,6 +219,15 @@ a {
   padding: 40px 40px 0px 20px;
 }
 
+.error{
+  color: red;
+  padding: 15px;
+  text-align: center;
+  box-sizing: border-box;
+  border-radius: 5px;
+  transform: translateX(4px);
+  
+}
 /*side bar css*/
 .sidebar-cont {
   padding: 40px;
