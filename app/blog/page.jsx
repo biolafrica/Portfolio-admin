@@ -1,10 +1,12 @@
+import Link from "next/link";
+
 export default function Blog(){
   return(
     <div className="blog-cont">
 
       <div className="blog-cont-head">
         <h3>Blog</h3>
-        <button className="pri-btn">Add Blog</button>
+        <Link className="pri-btn" href="/project/new">Add Blog</Link>
       </div>
 
       <div className="blog-cont-body">

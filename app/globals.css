@@ -269,6 +269,11 @@ a {
   border-radius: 5px;
 }
 
+.not-found{
+  text-align: center;
+  margin: 200px auto;
+}
+
 /*header css*/
 
 .adminavbar_cont {
