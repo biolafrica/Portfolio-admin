@@ -1,12 +1,8 @@
 import Link from "next/link";
+import LogoutButton from "../common/logoutButton";
 
 
 export default function AdminNav({header}){
-
-  const handleLogout = ()=>{
-    console.log('log out')
-  }
- 
 
   return(
     <div className="adminavbar_cont">
@@ -29,10 +25,7 @@ export default function AdminNav({header}){
             <h4>AB</h4>
           </Link>
 
-          <button onClick={handleLogout} className="right-logout text-btn">
-            <img src="/icons/logout.svg" alt="logout icon" />
-            <h4>Logout</h4>
-          </button>
+          <LogoutButton/>
 
         </div>
       </div>
