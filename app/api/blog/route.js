@@ -1,6 +1,6 @@
-import { createClient } from "@/app/utils/supabase/server"
 import { NextResponse } from "next/server";
 import fetchUser from "@/app/utils/supabase/fetchUser";
+import { addBlog } from "@/app/utils/database/addTasks";
 
 export async function POST(request){
   const blog = await request.json();
@@ -13,17 +13,6 @@ export async function POST(request){
     user: author
   }
 
-  const supabase = await createClient();
-  const {data, error}= await supabase
-  .from("Blog")
-  .insert([updatedBlog])
-  .select()
-  .single()
-
-
-  if(error){
-    throw new Error(error.message)
-  }
-  
+  const data = addBlog(updatedBlog);
   return NextResponse.json({data})
 }

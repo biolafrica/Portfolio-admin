@@ -1,6 +1,11 @@
 import Link from "next/link";
+import { getProjects } from "@/app/utils/database/getTasks";
 
-export default function Project(){
+export default async function Project(){
+
+  const projects = await getProjects();
+  console.log(projects)
+  
   return(
     <div className="project-cont">
 
