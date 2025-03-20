@@ -1,12 +1,14 @@
 "use client"
 
 import { useState } from "react"
-
+import Pagination from "./pagination";
+import usePagination from "@/app/hooks/usePagination";
 
 
 export default function BlogList({blogs}){
   const [searchTerm, setSearchTerm]= useState("");
   const filteredBlogs = blogs.filter(blog=> (blog.title).toLowerCase().includes(searchTerm.toLowerCase()))
+  const {currentData, currentPage, totalPages, goToNextPage, goToPreviousPage} = usePagination(filteredBlogs, 5)
 
   return(
     <>
@@ -28,8 +30,8 @@ export default function BlogList({blogs}){
       
       <div className="blog-cont-body-body">
 
-        {filteredBlogs.length !== 0 ? 
-          ( filteredBlogs.map((blog=>(
+        {currentData.length !== 0 ? 
+          ( currentData.map((blog=>(
               <div className="blog-cont-body-row" key={blog.id}>
                 <h5>{blog.title}</h5>
                 <div className="action-cont">
@@ -44,10 +46,7 @@ export default function BlogList({blogs}){
 
       </div>
 
-      <div className="blog-cont-body-footer">
-        <h5>Previous</h5>
-        <h5>Next</h5>
-      </div>
+      <Pagination currentPage={currentPage} totalPages={totalPages} goToNextPage={goToNextPage} goToPreviousPage={goToPreviousPage}/>
 
     </>
   )

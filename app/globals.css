@@ -224,10 +224,12 @@ a {
   padding: 10px;
   text-align: center;
 }
+
 .empty{
   text-align: center;
   margin: 50px auto;
 }
+
 /*side bar css*/
 .sidebar-cont {
   padding: 40px;
@@ -422,9 +424,7 @@ a {
   cursor: pointer;
 }
 
-.project-cont-body-footer,
-.user-cont-body-footer,
-.blog-cont-body-footer{
+.page-cont-body-footer{
   display: flex;
   gap: 10px;
   justify-content: center;
@@ -433,11 +433,7 @@ a {
   background-color: rgba(255, 255, 255, 0.1);
 }
 
-.project-cont-body-footer h5,
-.user-cont-body-footer h5,
-.blog-cont-body-footer h5 {
-  cursor: pointer;
-}
+
 
 /*authentication*/
 .auth-form{

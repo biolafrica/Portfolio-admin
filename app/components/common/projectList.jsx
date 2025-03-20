@@ -1,10 +1,18 @@
 "use client"
 import { useState } from "react"
+import Pagination from "./pagination";
+import usePagination from "@/app/hooks/usePagination";
 
 export default function ProjectList({projects}){
 
   const [searchTerm, setSearchTerm]= useState("");
   const filteredProjects = projects.filter(project=> (project.title).toLowerCase().includes(searchTerm.toLowerCase()))
+  const {
+    currentData, 
+    currentPage, 
+    totalPages, 
+    goToNextPage, 
+    goToPreviousPage} = usePagination(filteredProjects, 5)
   return(
 
     <div className="project-cont-body">
@@ -27,8 +35,8 @@ export default function ProjectList({projects}){
 
       <div className="project-cont-body-body">
 
-        {filteredProjects.length !== 0 ? 
-          ( filteredProjects.map((project=>(
+        {currentData.length !== 0 ? 
+          ( currentData.map((project=>(
               <div className="blog-cont-body-row" key={project.id}>
                 <h5>{project.title}</h5>
                 <div className="action-cont">
@@ -43,10 +51,13 @@ export default function ProjectList({projects}){
 
       </div>
 
-      <div className="project-cont-body-footer">
-        <h5>Previous</h5>
-        <h5>Next</h5>
-      </div>
+      <Pagination 
+        currentPage={currentPage} 
+        totalPages={totalPages} 
+        goToNextPage={goToNextPage} 
+        goToPreviousPage={goToPreviousPage}
+      />
+
 
     
     </div>
