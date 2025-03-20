@@ -13,7 +13,7 @@ export default function useForm(initialValues){
     setFormData(initialValues)
   }
 
-  return{formData,handleInputChange, resetForm}
+  return{formData,handleInputChange, resetForm, setFormData}
 
 
 }

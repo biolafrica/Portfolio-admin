@@ -1,3 +1,5 @@
+"use client"
+
 export default function AddProjectForm(){
   return(
     <form className="add-blog-form">

@@ -1,10 +1,12 @@
+import Link from "next/link";
+
 export default function Project(){
   return(
     <div className="project-cont">
 
       <div className="project-cont-head">
         <h3>Projects</h3>
-        <button className="pri-btn">Add Project</button>
+        <Link href="/project/new" className="pri-btn">Add Project</Link>
       </div>
 
       <div className="project-cont-body">
