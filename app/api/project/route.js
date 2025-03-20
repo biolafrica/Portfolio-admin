@@ -1,4 +1,3 @@
-import { createClient } from "@/app/utils/supabase/server";
 import { NextResponse } from "next/server";
 import fetchUser from "@/app/utils/supabase/fetchUser";
 import { addProject } from "@/app/utils/database/addTasks";
@@ -10,7 +9,7 @@ export async function POST(request){
   const userData = await fetchUser();
   const author = userData.user.email;
 
-  const updatedProject ={
+  const updatedProject = {
     ...project,
     user: author
   }

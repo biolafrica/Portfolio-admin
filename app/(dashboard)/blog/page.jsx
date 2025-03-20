@@ -3,9 +3,7 @@ import BlogList from "@/app/components/common/blogList";
 import { getBlogs } from "@/app/utils/database/getTasks";
 
 export default async function Blog(){
-
   const blogs = await getBlogs();
-  console.log(blogs)
 
   return(
     <div className="blog-cont">
@@ -16,7 +14,7 @@ export default async function Blog(){
       </div>
 
       <div className="blog-cont-body">
-        <BlogList/>
+        <BlogList blogs={blogs}/>
       </div>
       
 

@@ -1,9 +1,24 @@
-export default function BlogList(){
+"use client"
+
+import { useState } from "react"
+
+
+
+export default function BlogList({blogs}){
+  const [searchTerm, setSearchTerm]= useState("");
+  const filteredBlogs = blogs.filter(blog=> (blog.title).toLowerCase().includes(searchTerm.toLowerCase()))
+
   return(
     <>
 
       <div className="blog-cont-body-search">
-        <input type="search" name="search" placeholder="search blogs"  />
+        <input 
+          type="search" 
+          name="search"
+          value={searchTerm}
+          onChange={(e)=>setSearchTerm(e.target.value)}
+          placeholder="search blogs"  
+        />
       </div>
 
       <div className="blog-cont-body-header">
@@ -13,29 +28,19 @@ export default function BlogList(){
       
       <div className="blog-cont-body-body">
 
-        <div className="blog-cont-body-row">
-          <h5>2025 in Retrospect</h5>
-          <div className="action-cont">
-            <img src="/icons/edit.svg" alt="edit icon" />
-            <img src="/icons/delete.svg" alt="delete icon" />
-          </div>
-        </div>
-
-        <div className="blog-cont-body-row">
-          <h5>Coding is !Hard</h5>
-          <div className="action-cont">
-            <img src="/icons/edit.svg" alt="edit icon" />
-            <img src="/icons/delete.svg" alt="delete icon" />
-          </div>
-        </div>
-
-        <div className="blog-cont-body-row">
-          <h5>React.js vs Next.js</h5>
-          <div className="action-cont">
-            <img src="/icons/edit.svg" alt="edit icon" />
-            <img src="/icons/delete.svg" alt="delete icon" />
-          </div>
-        </div>
+        {filteredBlogs.length !== 0 ? 
+          ( filteredBlogs.map((blog=>(
+              <div className="blog-cont-body-row" key={blog.id}>
+                <h5>{blog.title}</h5>
+                <div className="action-cont">
+                  <img src="/icons/edit.svg" alt="edit icon" id={blog.id} />
+                  <img src="/icons/delete.svg" alt="delete icon" id={blog.id} />
+                </div>
+              </div>
+          
+            )))
+          ):(<h4 className="empty">No Blogs Available</h4>)
+        }
 
       </div>
 

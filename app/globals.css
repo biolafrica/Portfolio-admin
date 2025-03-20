@@ -224,6 +224,10 @@ a {
   padding: 10px;
   text-align: center;
 }
+.empty{
+  text-align: center;
+  margin: 50px auto;
+}
 /*side bar css*/
 .sidebar-cont {
   padding: 40px;

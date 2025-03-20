@@ -28,6 +28,7 @@ export async function addProject(updatedProject){
   if(error){
     throw new Error(error.message)
   }
+  
   return data;
 
 }
