@@ -1,6 +1,13 @@
 import Link from "next/link";
+import fetchUser from "@/app/utils/supabase/fetchUser";
 
-export default function User(){
+export default async function User(){
+
+  const userData = await fetchUser();
+  const userEmail = userData.user.email;
+  const userName = userData.user.user_metadata.name;
+
+
   return(
 
     <div className="user-cont">
@@ -24,25 +31,15 @@ export default function User(){
         <div className="user-cont-body-body">
 
           <div className="user-cont-body-row">
-            <h5>Abiodun Biobaku</h5>
-            <h5>biolafrica@gmail.com</h5>
-          </div>
-
-          <div className="user-cont-body-row">
-            <h5>Abiodun Biobaku</h5>
-            <h5>abiodun@yahoo.com</h5>
-          </div>
-
-          <div className="user-cont-body-row">
-            <h5>Abiodun Biobaku</h5>
-            <h5>Abeey@test.com</h5>
+            <h5>{userName}</h5>
+            <h5>{userEmail}</h5>
           </div>
 
         </div>
 
-        <div className="user-cont-body-footer">
-          <h5>Previous</h5>
-          <h5>Next</h5>
+        <div className="page-cont-body-footer">
+          <h5 style={{color: "#ffffffA6", cursor: "not-allowed"}}>Previous</h5>
+          <h5 style={{color: "#ffffffA6", cursor: "not-allowed"}}>Next</h5>
         </div>
 
      
