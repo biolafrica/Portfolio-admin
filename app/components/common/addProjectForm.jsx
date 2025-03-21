@@ -6,22 +6,22 @@ import { useRouter } from "next/navigation";
 import { useState } from "react"
 
 
-export default function AddProjectForm(){
+export default function AddProjectForm({project, id}){
 
   const initialValues = {
-    title: "",
-    sub_title: "",
-    introduction: "",
-    development_process: "",
-    technical_implementation: "",
-    result_impact : "",
-    next_step_reflection: "",
-    image:"",
-    demo_video: "",
-    excerpt: "",
-    github_link: "",
-    website_link: "",
-    user: ""
+    title: project.title ||  "",
+    sub_title: project.sub_title || "",
+    introduction: project.introduction || "",
+    development_process: project.development_process || "",
+    technical_implementation: project.technical_implementation || "",
+    result_impact : project.result_impact || "",
+    next_step_reflection: project.next_step_reflection || "",
+    image: project.image || "",
+    demo_video: project.demo_video || "",
+    excerpt: project.excerpt || "",
+    github_link: project.github_link || "",
+    website_link: project.website_link || "",
+    user: project.user || ""
 
   }
 
@@ -33,9 +33,7 @@ export default function AddProjectForm(){
   const supabase = createClient();
   const router = useRouter();
 
-  const handleFormSubmit= async(e)=>{
-    e.preventDefault();
-    setUploading(true);
+  const handleUpload=async()=>{
 
     const imageFileExt = imageFile.name.split(".").pop();
     const videoFileExt = videoFile.name.split(".").pop();
@@ -49,7 +47,6 @@ export default function AddProjectForm(){
     const {error:imageError} = await supabase.storage.from("media").upload(imageFilePath, imageFile);
     const {error:videoError} = await supabase.storage.from("media").upload(videoFilePath, videoFile);
 
-
     if (imageError || videoError){
       return setErrorMessage(imageError?.message || videoError?.message) 
     }
@@ -57,22 +54,61 @@ export default function AddProjectForm(){
     const imagePublicUrl = supabase.storage.from("media").getPublicUrl(imageFilePath).data.publicUrl;
     const videoPublicUrl = supabase.storage.from("media").getPublicUrl(videoFilePath).data.publicUrl;
 
-    const updatedFormData = {
-      ...formData,
-      image: imagePublicUrl,
-      demo_video: videoPublicUrl,
-    }
+    return {imagePublicUrl, videoPublicUrl}
 
-    const res = await fetch("http://localhost:3001/api/project", {
-      method: 'POST',
-      headers: {"Content-Type" : "application/json"},
-      body : JSON.stringify(updatedFormData)
+  }
 
-    })
+  const handleFormSubmit= async(e)=>{
+    e.preventDefault();
+    setUploading(true);
 
-    const project = await res.json();
-    if(project.data){
-      router.push("/project")
+    if(project){
+      let updatedFormData = {...formData}
+
+      if(file){
+        const {imagePublicUrl, videoPublicUrl} = await handleUpload();
+        updatedFormData = {
+          ...formData,
+          image: imagePublicUrl,
+          demo_video: videoPublicUrl,
+        }
+
+      }
+
+      const res = await fetch("http://localhost:3001/api/project", {
+        method: 'PUT',
+        headers: {"Content-Type" : "application/json"},
+        body : JSON.stringify({updatedFormData, id})
+
+      })
+
+      const project = await res.json();
+      if(project.data){
+        router.push("/project")
+      }
+
+
+    }else{
+
+      const {imagePublicUrl, videoPublicUrl} = await handleUpload();
+      const updatedFormData = {
+        ...formData,
+        image: imagePublicUrl,
+        demo_video: videoPublicUrl,
+      }
+
+      const res = await fetch("http://localhost:3001/api/project", {
+        method: 'POST',
+        headers: {"Content-Type" : "application/json"},
+        body : JSON.stringify(updatedFormData)
+
+      })
+
+      const project = await res.json();
+      if(project.data){
+        router.push("/project")
+      }
+
     }
 
     setUploading(false)
@@ -163,7 +199,7 @@ export default function AddProjectForm(){
           type="file" 
           name="image"
           onChange={(e)=>setImageFile(e.target.files[0])} 
-          required
+          required={!project}
         />
       </label>
 
@@ -173,7 +209,7 @@ export default function AddProjectForm(){
           type="file" 
           name="demo_video" 
           onChange={(e)=>setVideoFile(e.target.files[0])} 
-          required
+          required={!project}
         />
       </label>
 

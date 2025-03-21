@@ -23,9 +23,8 @@ export async function POST(request){
 
 export async function PUT(request){
   const blog = await request.json();
-  console.log ("received blog", blog)
   const {updatedFormData, id} = blog
-  console.log(updatedFormData, id)
+
 
   const data = editBlog(updatedFormData, id)
   return NextResponse.json({data})

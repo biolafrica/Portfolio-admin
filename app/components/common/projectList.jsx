@@ -2,8 +2,11 @@
 import { useState } from "react"
 import Pagination from "./pagination";
 import usePagination from "@/app/hooks/usePagination";
+import { useRouter } from "next/navigation";
+
 
 export default function ProjectList({projects}){
+  const router = useRouter();
 
   const [searchTerm, setSearchTerm]= useState("");
   const filteredProjects = projects.filter(project=> (project.title).toLowerCase().includes(searchTerm.toLowerCase()))
@@ -40,7 +43,7 @@ export default function ProjectList({projects}){
               <div className="blog-cont-body-row" key={project.id}>
                 <h5>{project.title}</h5>
                 <div className="action-cont">
-                  <img src="/icons/edit.svg" alt="edit icon" id={project.id} />
+                  <img src="/icons/edit.svg" alt="edit icon" id={project.id} onClick={()=>router.push(`/project/${project.id}`)} />
                   <img src="/icons/delete.svg" alt="delete icon" id={project.id} />
                 </div>
               </div>

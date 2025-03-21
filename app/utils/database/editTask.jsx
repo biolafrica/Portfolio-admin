@@ -16,3 +16,20 @@ export async function editBlog(updatedData, id){
   return data;
 
 }
+
+export async function editProject(updatedData, id){
+  const supabase = createClient();
+
+  const{data, error} = await supabase
+  .from("Project")
+  .update(updatedData)
+  .eq("id",id)
+
+  if(error){
+    console.log("error updating project", error.message)
+    throw new Error(error)
+  }
+
+  return data;
+
+}
