@@ -3,7 +3,7 @@ import { createClient } from "../supabase/server";
 export async function editBlog(updatedData, id){
   const supabase = createClient();
 
-  const{error} = await supabase
+  const{data, error} = await supabase
   .from("Blog")
   .update(updatedData)
   .eq("id",id)

@@ -3,6 +3,9 @@ import fetchUser from "@/app/utils/supabase/fetchUser";
 import { addBlog } from "@/app/utils/database/addTasks";
 import { editBlog } from "@/app/utils/database/editTask";
 
+
+export const dynamic = "force-dynamic"
+
 export async function POST(request){
   const blog = await request.json();
 
@@ -28,3 +31,5 @@ export async function PUT(request){
   return NextResponse.json({data})
 
 }
+
+

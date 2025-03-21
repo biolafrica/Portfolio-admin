@@ -9,6 +9,21 @@ import { useRouter } from "next/navigation";
 export default function BlogList({blogs}){
   const router = useRouter();
 
+  const handleDelete = async(id)=>{
+    const res = await fetch(`http://localhost:3001/api/blog/${id}`,{
+      method: 'DELETE',
+    })
+
+    const blog = await res.json();
+
+    if(blog.error){
+      console.log("error deleting user")
+    }else {
+      router.refresh()
+    }
+
+  }
+
   const [searchTerm, setSearchTerm]= useState("");
   const filteredBlogs = blogs.filter(blog => (blog.title).toLowerCase().includes(searchTerm.toLowerCase()))
   const {
@@ -44,7 +59,7 @@ export default function BlogList({blogs}){
                 <h5>{blog.title}</h5>
                 <div className="action-cont">
                   <img src="/icons/edit.svg" alt="edit icon" onClick={()=>router.push(`/blog/${blog.id}`)}/>
-                  <img src="/icons/delete.svg" alt="delete icon" id={blog.id} />
+                  <img src="/icons/delete.svg" alt="delete icon" onClick={()=>handleDelete(blog.id)}/>
                 </div>
               </div>
           

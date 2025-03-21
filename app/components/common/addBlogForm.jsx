@@ -28,6 +28,7 @@ export default function AddBlogForm({blog, id}){
   const router = useRouter();
 
   const handlePictureUpload=async()=>{
+    console.log("file object", file)
 
     const fileExt = file.name.split(".").pop();
     const fileName = `${Date.now()}.${fileExt}`;
@@ -45,6 +46,8 @@ export default function AddBlogForm({blog, id}){
     .from("media")
     .getPublicUrl(filePath).data.publicUrl;
 
+    console.log('public url before storage', publicUrl)
+
     return publicUrl;
 
   }
@@ -59,7 +62,7 @@ export default function AddBlogForm({blog, id}){
     if(blog){
 
       if(file){
-        const publicUrl = handlePictureUpload();
+        const publicUrl = await handlePictureUpload();
         updatedFormData = {
           ...formData,
           image: publicUrl
@@ -76,11 +79,15 @@ export default function AddBlogForm({blog, id}){
       if(blog.data){router.push("/blog")}
 
     }else{
-      const publicUrl = handlePictureUpload();
+      const publicUrl = await handlePictureUpload();
+      console.log("public url joined", publicUrl);
+
       const updatedFormData = {
         ...formData,
         image: publicUrl
       }
+
+
 
       const res = await fetch("http://localhost:3001/api/blog",{
         method: "POST",
@@ -89,9 +96,8 @@ export default function AddBlogForm({blog, id}){
       })
 
       const blog = await res.json()
-  
       if(blog.data){router.push("/blog")}
-
+  
     }
   
  

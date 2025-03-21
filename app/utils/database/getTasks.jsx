@@ -3,8 +3,6 @@ import { createClient } from "../supabase/server";
 export async function getBlogs(){
   const supabase = await createClient();
 
-  console.log("fetching data.....")
-
   const {data, error} = await supabase
   .from("Blog")
   .select()
@@ -19,8 +17,6 @@ export async function getBlogs(){
 
 export async function getProjects(){
   const supabase = await createClient();
-
-  console.log("fetching data.....")
 
   const {data, error} = await supabase
   .from("Project")
