@@ -9,7 +9,7 @@ export default function ProjectList({projects}){
   const router = useRouter();
 
   const handleDelete=async(id)=>{
-    const res = await fetch(`http://localhost:3001/api/project/${id}`, {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/project/${id}`, {
       method: "DELETE"
     })
 

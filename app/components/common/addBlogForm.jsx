@@ -62,7 +62,7 @@ export default function AddBlogForm({blog, id}){
         }
       }
 
-      const res = await fetch("http://localhost:3001/api/blog",{
+      const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/blog`,{
         method: "PUT",
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify({updatedFormData, id})
@@ -79,7 +79,7 @@ export default function AddBlogForm({blog, id}){
         image: publicUrl
       }
 
-      const res = await fetch("http://localhost:3001/api/blog",{
+      const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/blog`,{
         method: "POST",
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify(updatedFormData)
@@ -182,7 +182,7 @@ export default function AddBlogForm({blog, id}){
           </select>
         </label>
 
-        <button className="pri-btn" type="submit">{uploading ? "Uploading" : "Save" }</button>
+        <button className="pri-btn" type="submit" disabled={uploading}>{uploading ? "Uploading" : "Save" }</button>
 
       </div>
 

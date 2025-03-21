@@ -10,7 +10,7 @@ export default function BlogList({blogs}){
   const router = useRouter();
 
   const handleDelete = async(id)=>{
-    const res = await fetch(`http://localhost:3001/api/blog/${id}`,{
+    const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/blog/${id}`,{
       method: 'DELETE',
     })
 

@@ -75,7 +75,7 @@ export default function AddProjectForm({project, id}){
 
       }
 
-      const res = await fetch("http://localhost:3001/api/project", {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/project`, {
         method: 'PUT',
         headers: {"Content-Type" : "application/json"},
         body : JSON.stringify({updatedFormData, id})
@@ -97,7 +97,7 @@ export default function AddProjectForm({project, id}){
         demo_video: videoPublicUrl,
       }
 
-      const res = await fetch("http://localhost:3001/api/project", {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/project`, {
         method: 'POST',
         headers: {"Content-Type" : "application/json"},
         body : JSON.stringify(updatedFormData)
@@ -245,7 +245,7 @@ export default function AddProjectForm({project, id}){
         />
       </label>
 
-      <button className="pri-btn" type="submit">{uploading? "Uploading" : "Save"}</button>
+      <button className="pri-btn" type="submit" disabled={uploading} >{uploading? "Uploading" : "Save"}</button>
 
     </form>
   )
