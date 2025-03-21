@@ -6,20 +6,20 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 
-export default function AddBlogForm(){
+export default function AddBlogForm({blog}){
 
   const initialValues = {
-    title: "",
-    content: "",
-    excerpt: "",
-    image: "",
-    read: "",
-    type: "",
-    visibility: "",
-    user:""
+    title: blog?.title || "",
+    content: blog?.content || "",
+    excerpt: blog?.excerpt || "",
+    image: blog?.image || "",
+    read: blog?.read || "",
+    type: blog?.type || "",
+    visibility: blog?.visibility ||  "",
+    user:blog?.user || ""
   }
 
-  const {formData, handleInputChange, resetForm, setFormData}= useForm(initialValues);
+  const {formData, handleInputChange, resetForm}= useForm(initialValues);
 
   const [file, setFile] = useState(null);
   const [uploading, setUploading] = useState(false);
@@ -27,12 +27,8 @@ export default function AddBlogForm(){
   const supabase =createClient();
   const router = useRouter();
 
+  const handlePictureUpload=async()=>{
 
-
-  const handleFormSubmit= async(e)=>{
-    e.preventDefault();
-    setUploading(true)
-  
     const fileExt = file.name.split(".").pop();
     const fileName = `${Date.now()}.${fileExt}`;
     const filePath = `uploads/${fileName}`;
@@ -49,24 +45,56 @@ export default function AddBlogForm(){
     .from("media")
     .getPublicUrl(filePath).data.publicUrl;
 
+    return publicUrl;
+
+  }
 
 
-    const updatedFormData = {
-      ...formData,
-      image: publicUrl
+
+  const handleFormSubmit= async(e)=>{
+    e.preventDefault();
+    setUploading(true);
+
+    let updatedFormData = {...formData}
+    if(blog){
+
+      if(file){
+        const publicUrl = handlePictureUpload();
+        updatedFormData = {
+          ...formData,
+          image: publicUrl
+        }
+      }
+
+      const res = await fetch("http://localhost:3001/api/blog",{
+        method: "PUT",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify(updatedFormData)
+      })
+
+      const blog = await res.json()
+      if(blog.data){router.push("/blog")}
+
+    }else{
+      const publicUrl = handlePictureUpload();
+      const updatedFormData = {
+        ...formData,
+        image: publicUrl
+      }
+
+      const res = await fetch("http://localhost:3001/api/blog",{
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify(updatedFormData)
+      })
+
+      const blog = await res.json()
+  
+      if(blog.data){router.push("/blog")}
+
     }
-
-    const res = await fetch("http://localhost:3001/api/blog",{
-      method: "POST",
-      headers: {"Content-Type": "application/json"},
-      body: JSON.stringify(updatedFormData)
-    })
-
-    const blog = await res.json()
+  
  
-    if(blog.data){
-      router.push("/blog")
-    }
 
     setUploading(false)
     resetForm();

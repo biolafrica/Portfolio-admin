@@ -16,3 +16,5 @@ export async function POST(request){
   const data = addBlog(updatedBlog);
   return NextResponse.json({data})
 }
+
+

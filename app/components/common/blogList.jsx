@@ -3,12 +3,20 @@
 import { useState } from "react"
 import Pagination from "./pagination";
 import usePagination from "@/app/hooks/usePagination";
+import { useRouter } from "next/navigation";
 
 
 export default function BlogList({blogs}){
+  const router = useRouter();
+
   const [searchTerm, setSearchTerm]= useState("");
-  const filteredBlogs = blogs.filter(blog=> (blog.title).toLowerCase().includes(searchTerm.toLowerCase()))
-  const {currentData, currentPage, totalPages, goToNextPage, goToPreviousPage} = usePagination(filteredBlogs, 5)
+  const filteredBlogs = blogs.filter(blog => (blog.title).toLowerCase().includes(searchTerm.toLowerCase()))
+  const {
+    currentData, 
+    currentPage, 
+    totalPages, 
+    goToNextPage, 
+    goToPreviousPage} = usePagination(filteredBlogs, 5)
 
   return(
     <>
@@ -24,7 +32,7 @@ export default function BlogList({blogs}){
       </div>
 
       <div className="blog-cont-body-header">
-        <h5>Blog name</h5>
+        <h5>Blog title</h5>
         <h5>Action</h5>
       </div>
       
@@ -35,7 +43,7 @@ export default function BlogList({blogs}){
               <div className="blog-cont-body-row" key={blog.id}>
                 <h5>{blog.title}</h5>
                 <div className="action-cont">
-                  <img src="/icons/edit.svg" alt="edit icon" id={blog.id} />
+                  <img src="/icons/edit.svg" alt="edit icon" onClick={()=>router.push(`/blog/${blog.id}`)}/>
                   <img src="/icons/delete.svg" alt="delete icon" id={blog.id} />
                 </div>
               </div>
@@ -46,7 +54,12 @@ export default function BlogList({blogs}){
 
       </div>
 
-      <Pagination currentPage={currentPage} totalPages={totalPages} goToNextPage={goToNextPage} goToPreviousPage={goToPreviousPage}/>
+      <Pagination 
+        currentPage={currentPage} 
+        totalPages={totalPages} 
+        goToNextPage={goToNextPage} 
+        goToPreviousPage={goToPreviousPage}
+      />
 
     </>
   )
