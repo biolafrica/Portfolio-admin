@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import fetchUser from "@/app/utils/supabase/fetchUser";
 import { addBlog } from "@/app/utils/database/addTasks";
+import { editBlog } from "@/app/utils/database/editTask";
 
 export async function POST(request){
   const blog = await request.json();
@@ -17,4 +18,13 @@ export async function POST(request){
   return NextResponse.json({data})
 }
 
+export async function PUT(request){
+  const blog = await request.json();
+  console.log ("received blog", blog)
+  const {updatedFormData, id} = blog
+  console.log(updatedFormData, id)
 
+  const data = editBlog(updatedFormData, id)
+  return NextResponse.json({data})
+
+}

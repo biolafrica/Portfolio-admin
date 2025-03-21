@@ -8,7 +8,7 @@ export default async function EditBlog({params}){
   return(
     <>
       <h4 style={{textAlign: "center"}}>Edit blog post</h4>
-      <AddBlogForm blog={blog}/>
+      <AddBlogForm blog={blog} id={id}/>
     </>
   )
 

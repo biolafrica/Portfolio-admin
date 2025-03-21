@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 
-export default function AddBlogForm({blog}){
+export default function AddBlogForm({blog, id}){
 
   const initialValues = {
     title: blog?.title || "",
@@ -69,7 +69,7 @@ export default function AddBlogForm({blog}){
       const res = await fetch("http://localhost:3001/api/blog",{
         method: "PUT",
         headers: {"Content-Type": "application/json"},
-        body: JSON.stringify(updatedFormData)
+        body: JSON.stringify({updatedFormData, id})
       })
 
       const blog = await res.json()
@@ -126,7 +126,7 @@ export default function AddBlogForm({blog}){
             name="content"
             value={formData.content}
             onChange={handleInputChange} 
-            required 
+            required
           ></textarea>
         </label>
 
@@ -144,9 +144,8 @@ export default function AddBlogForm({blog}){
           <h5>Image</h5>
           <input 
             type="file" 
-            required
+            required={!blog}
             name="image"
-          
             onChange={(e)=>setFile(e.target.files[0])}
           />
         </label>
