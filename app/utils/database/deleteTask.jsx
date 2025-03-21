@@ -14,3 +14,17 @@ export async function deleteBlog(id){
     
 
 }
+
+export async function deleteProject(id){
+  const supabase = await createClient();
+
+  const {error} = await supabase
+  .from("Project")
+  .delete()
+  .eq("id", id)
+
+  if(error){
+    return error
+  }
+
+}

@@ -9,19 +9,19 @@ import { useState } from "react"
 export default function AddProjectForm({project, id}){
 
   const initialValues = {
-    title: project.title ||  "",
-    sub_title: project.sub_title || "",
-    introduction: project.introduction || "",
-    development_process: project.development_process || "",
-    technical_implementation: project.technical_implementation || "",
-    result_impact : project.result_impact || "",
-    next_step_reflection: project.next_step_reflection || "",
-    image: project.image || "",
-    demo_video: project.demo_video || "",
-    excerpt: project.excerpt || "",
-    github_link: project.github_link || "",
-    website_link: project.website_link || "",
-    user: project.user || ""
+    title: project?.title ||  "",
+    sub_title: project?.sub_title || "",
+    introduction: project?.introduction || "",
+    development_process: project?.development_process || "",
+    technical_implementation: project?.technical_implementation || "",
+    result_impact : project?.result_impact || "",
+    next_step_reflection: project?.next_step_reflection || "",
+    image: project?.image || "",
+    demo_video: project?.demo_video || "",
+    excerpt: project?.excerpt || "",
+    github_link: project?.github_link || "",
+    website_link: project?.website_link || "",
+    user: project?.user || ""
 
   }
 
@@ -65,7 +65,7 @@ export default function AddProjectForm({project, id}){
     if(project){
       let updatedFormData = {...formData}
 
-      if(file){
+      if(imageFile || videoFile){
         const {imagePublicUrl, videoPublicUrl} = await handleUpload();
         updatedFormData = {
           ...formData,

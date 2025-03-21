@@ -24,6 +24,7 @@ export async function PUT(request){
   const {id, updatedFormData} = project;
 
   const data = editProject(updatedFormData, id)
+  console.log(data)
   return NextResponse.json({data})
 
 

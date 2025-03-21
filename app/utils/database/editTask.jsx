@@ -1,7 +1,7 @@
 import { createClient } from "../supabase/server";
 
 export async function editBlog(updatedData, id){
-  const supabase = createClient();
+  const supabase = await createClient();
 
   const{data, error} = await supabase
   .from("Blog")
@@ -18,7 +18,7 @@ export async function editBlog(updatedData, id){
 }
 
 export async function editProject(updatedData, id){
-  const supabase = createClient();
+  const supabase = await createClient();
 
   const{data, error} = await supabase
   .from("Project")

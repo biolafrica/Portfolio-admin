@@ -8,6 +8,20 @@ import { useRouter } from "next/navigation";
 export default function ProjectList({projects}){
   const router = useRouter();
 
+  const handleDelete=async(id)=>{
+    const res = await fetch(`http://localhost:3001/api/project/${id}`, {
+      method: "DELETE"
+    })
+
+    const project = await res.json();
+
+    if(project.error){
+      console.log("error deleting user")
+    }else {
+      router.refresh()
+    }
+  }
+
   const [searchTerm, setSearchTerm]= useState("");
   const filteredProjects = projects.filter(project=> (project.title).toLowerCase().includes(searchTerm.toLowerCase()))
   const {
@@ -44,7 +58,7 @@ export default function ProjectList({projects}){
                 <h5>{project.title}</h5>
                 <div className="action-cont">
                   <img src="/icons/edit.svg" alt="edit icon" id={project.id} onClick={()=>router.push(`/project/${project.id}`)} />
-                  <img src="/icons/delete.svg" alt="delete icon" id={project.id} />
+                  <img src="/icons/delete.svg" alt="delete icon" id={project.id} onClick={()=>handleDelete(project.id)} />
                 </div>
               </div>
           
