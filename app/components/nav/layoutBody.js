@@ -2,7 +2,6 @@
 
 import SideNav from "./sidebar"
 import AdminNav from "./header"
-import Footer from "./footer"
 import { useState } from "react"
 
 export default function LayoutBody({children}){

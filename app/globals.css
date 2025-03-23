@@ -240,6 +240,18 @@ a {
   text-align: center;
 }
 
+.login-header{
+  margin: 0 auto;
+  text-align: center;
+
+}
+
+.login-cont{
+  width: 70%;
+  margin: 0px auto;
+
+}
+
 /*side bar css*/
 .sidebar-cont {
   padding: 40px;
