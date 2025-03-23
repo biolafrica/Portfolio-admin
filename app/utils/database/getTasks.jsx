@@ -30,5 +30,3 @@ export async function getProjects(){
   return (data);
 
 }
-
-export async function getUsers(){}

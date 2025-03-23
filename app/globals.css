@@ -230,6 +230,16 @@ a {
   margin: 50px auto;
 }
 
+.home_cont{
+  margin: 0 auto;
+  text-align: center;
+}
+
+.loading {
+  margin: 200px auto;
+  text-align: center;
+}
+
 /*side bar css*/
 .sidebar-cont {
   padding: 40px;
