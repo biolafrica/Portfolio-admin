@@ -21,6 +21,9 @@ export default function AddProjectForm({project, id}){
     excerpt: project?.excerpt || "",
     github_link: project?.github_link || "",
     website_link: project?.website_link || "",
+    stackI: project?.stackI || "",
+    stackII: project?.stackII || "",
+    stackIII: project?.stackIII || "",
     user: project?.user || ""
 
   }
@@ -221,6 +224,58 @@ export default function AddProjectForm({project, id}){
           onChange={handleInputChange}
           required
         ></textarea>
+      </label>
+
+      <label htmlFor="stackI">
+        <h5>Stack I</h5>
+        <select 
+          name="stackI" 
+          required
+          value={formData.stackI}
+          onChange={handleInputChange}
+        >
+          <option value="">Choose Stack</option>
+          <option value="javaScript">Javascript</option>
+          <option value="react">React.js</option>
+          <option value="next">Next.js</option>
+          <option value="nodejs">Node.js</option>
+          <option value="mongodb">Mongodb</option>
+          <option value="supabase">Supabase</option>
+        </select>
+      </label>
+
+      <label htmlFor="stackII">
+        <h5>Stack II</h5>
+        <select 
+          name="stackII"
+          value={formData.stackII}
+          onChange={handleInputChange}
+        >
+          <option value="">Choose Stack</option>
+          <option value="javaScript">Javascript</option>
+          <option value="react">React.js</option>
+          <option value="next">Next.js</option>
+          <option value="nodejs">Node.js</option>
+          <option value="mongodb">Mongodb</option>
+          <option value="supabase">Supabase</option>
+        </select>
+      </label>
+
+      <label htmlFor="stackIII">
+        <h5>Stack III</h5>
+        <select 
+          name="stackIII"
+          value={formData.stackIII}
+          onChange={handleInputChange}
+        >
+          <option value="">Choose Stack</option>
+          <option value="javaScript">Javascript</option>
+          <option value="react">React.js</option>
+          <option value="next">Next.js</option>
+          <option value="nodejs">Node.js</option>
+          <option value="mongodb">Mongodb</option>
+          <option value="supabase">Supabase</option>
+        </select>
       </label>
 
       <label htmlFor="github_link">

@@ -163,8 +163,8 @@ export default function AddBlogForm({blog, id}){
             onChange={handleInputChange}
           >
             <option value="">Choose Type</option>
-            <option value="tech">Tech</option>
-            <option value="life">Life</option>
+            <option value="TECH">Tech</option>
+            <option value="LIFE">Life</option>
           </select>
         </label>
 
