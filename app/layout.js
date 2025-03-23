@@ -2,6 +2,8 @@ import { Manrope} from "next/font/google";
 import "./globals.css";
 import LayoutBody from "./components/nav/layoutBody";
 
+export const dynamic = "force-dynamic"
+
 
 const manrope = Manrope({
   variable: "--font-manrope",
