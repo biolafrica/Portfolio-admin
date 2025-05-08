@@ -1,9 +1,9 @@
 import Link from "next/link";
 import BlogList from "@/app/components/common/blogList";
-import { getBlogs } from "@/app/utils/database/getTasks";
+import { getTasks } from "@/app/utils/database/getTasks";
 
 export default async function Blog(){
-  const blogs = await getBlogs();
+  const blogs = await getTasks.blogs();
 
   return(
     <div className="blog-cont">

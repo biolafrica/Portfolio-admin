@@ -1,10 +1,10 @@
 import Link from "next/link";
-import { getProjects } from "@/app/utils/database/getTasks";
+import { getProjects, getTasks } from "@/app/utils/database/getTasks";
 import ProjectList from "@/app/components/common/projectList";
 
 export default async function Project(){
 
-  const projects = await getProjects();
+  const projects = await getTasks.projects();
   
   return(
     <div className="project-cont">

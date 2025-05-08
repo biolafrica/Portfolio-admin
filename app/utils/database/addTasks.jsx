@@ -1,34 +1,38 @@
 import { createClient } from "../supabase/server";
 
-export async function addBlog(updatedBlog){
-  const supabase = await createClient();
-
-  const {data, error}= await supabase
-  .from("Blog")
-  .insert([updatedBlog])
-  .select()
-  .single()
-
-  if(error){
-    throw new Error(error.message)
-  }
-  return data;
-
-}
-
-export async function addProject(updatedProject){
-  const supabase = await createClient();
-
-  const {data, error}= await supabase
-  .from("Project")
-  .insert([updatedProject])
-  .select()
-  .single()
-
-  if(error){
-    throw new Error(error.message)
-  }
+export const addTask= {
+  supabase: null,
   
-  return data;
+  async init(){
+    if(!this.supabase){
+      this.supabase = await createClient();
+    }
+  },
 
+  async addSingleRow(table,payload){
+    await this.init();
+
+    const {data, error}= await this.supabase
+    .from(table)
+    .insert([payload])
+    .select()
+    .single()
+
+
+    if (error) {
+      console.log(`error adding ${table}`, error.message);
+      throw new Error(error);
+    }
+
+    return data;
+
+  },
+
+  async blog(payload){
+    return await this.addSingleRow("Blog", payload);
+  },
+
+  async project(payload){
+    return await this.addSingleRow("Project", payload);
+  }
 }

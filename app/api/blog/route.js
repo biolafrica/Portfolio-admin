@@ -1,30 +1,27 @@
 import { NextResponse } from "next/server";
 import fetchUser from "@/app/utils/supabase/fetchUser";
-import { addBlog } from "@/app/utils/database/addTasks";
+import { addTask } from "@/app/utils/database/addTasks";
 import {updateTask } from "@/app/utils/database/editTask";
 
 
 export const dynamic = "force-dynamic"
 
 export async function POST(request){
+
   try {
     const blog = await request.json();
     if(!blog){
       return NextResponse.json({error : "invalid blog data"}, {status :400})
     }
 
-    const {user} = await fetchUser();
-    if(!user){
-      return NextResponse.json({error : "error fetching authorised user data"}, {status :400})
-    }
-    const author = user.email;
+    const {userEmail} = await fetchUser();
 
     const updatedBlog ={
       ...blog,
-      user: author
+      user: userEmail
     }
 
-    const data = await addBlog(updatedBlog);
+    const data = await addTask.blog(updatedBlog);
     if(!data){
       return NextResponse.json({error : "error adding Blog"}, {status :400})
     }
@@ -45,7 +42,7 @@ export async function PUT(request){
       return NextResponse.json({error : "invalid blog data form"}, {status :400})
     }
 
-    const data = await updateTask.editBlog(updatedFormData, id);
+    const data = await updateTask.blog(updatedFormData, id);
     if(!data){
       return NextResponse.json({error : "error updating blog"}, {status :400})
     }

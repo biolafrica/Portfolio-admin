@@ -1,4 +1,4 @@
-import { deleteBlog } from "@/app/utils/database/deleteTask";
+import { deleteTask } from "@/app/utils/database/deleteTask";
 import { NextResponse } from "next/server";
 
 export async function DELETE(__, {params}){
@@ -8,7 +8,7 @@ export async function DELETE(__, {params}){
       return NextResponse.json({error : "invalid blog id params"}, {status :400})
     }
 
-    const error = await deleteBlog(id);
+    const error = await deleteTask.blog(id);
     return NextResponse.json({error},{status: 401})
     
   } catch (error) {

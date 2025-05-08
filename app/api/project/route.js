@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import fetchUser from "@/app/utils/supabase/fetchUser";
-import { addProject } from "@/app/utils/database/addTasks";
+import { addTask } from "@/app/utils/database/addTasks";
 import { updateTask } from "@/app/utils/database/editTask";
 
 
@@ -12,18 +12,14 @@ export async function POST(request){
       return NextResponse.json({error : "invalid project data"}, {status :400})
     }
 
-    const {user} = await fetchUser();
-    if(!user){
-      return NextResponse.json({error : "error fetching authorised user data"}, {status :400})
-    }
-    const author = user.email;
+    const {userEmail} = await fetchUser();
 
     const updatedProject = {
       ...project,
-      user: author
+      user: userEmail
     }
 
-    const data = await addProject(updatedProject)
+    const data = await addTask.project(updatedProject)
     if(!data){
       return NextResponse.json({error : "error adding project"}, {status :400})
     }
@@ -47,7 +43,7 @@ export async function PUT(request){
       return NextResponse.json({error : "invalid project data form"}, {status :400})
     }
 
-    const data = await updateTask.editProject(updatedFormData, id)
+    const data = await updateTask.project(updatedFormData, id)
     if( !data){
       return NextResponse.json({error : "error updating project"}, {status :400})
     }

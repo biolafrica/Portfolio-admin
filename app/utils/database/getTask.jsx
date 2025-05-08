@@ -36,3 +36,39 @@ export async function getProject(id){
   return data;
 
 }
+
+export const getTask= {
+  supabase: null,
+  
+  async init(){
+    if(!this.supabase){
+      this.supabase = await createClient();
+    }
+  },
+
+  async getSingleRow(table, id){
+    await this.init();
+
+    const {data, error}= await this.supabase
+    .from(table)
+    .select()
+    .eq("id", id)
+    .single();
+   
+    if (error) {
+      console.log(`Error fetching ${id} for ${table}`, error.message)
+      redirect('/not-found')
+    }
+
+    return data;
+
+  },
+
+  async blog(id){
+    return await this.getSingleRow("Blog", id);
+  },
+
+  async project(id){
+    return await this.getSingleRow("Project", id);
+  }
+}

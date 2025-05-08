@@ -33,13 +33,11 @@ export const updateTask= {
 
   },
 
-  async editBlog(updatedData, id){
+  async blog(updatedData, id){
     return await this.updateSingleRow("Blog", updatedData, id);
   },
 
-  async editProject(updatedData, id){
+  async project(updatedData, id){
     return await this.updateSingleRow("Project", updatedData, id);
   }
-
-
 }

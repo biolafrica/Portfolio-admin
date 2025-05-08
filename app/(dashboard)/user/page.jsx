@@ -2,11 +2,7 @@ import Link from "next/link";
 import fetchUser from "@/app/utils/supabase/fetchUser";
 
 export default async function User(){
-
-  const userData = await fetchUser();
-  const userEmail = userData.user.email;
-  const userName = userData.user.user_metadata.name;
-
+  const {userName,userEmail} = await fetchUser();
 
   return(
 
@@ -45,7 +41,6 @@ export default async function User(){
      
       </div>
       
-
     </div>
   )
 }

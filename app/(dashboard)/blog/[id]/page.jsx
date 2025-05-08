@@ -1,9 +1,9 @@
 import AddBlogForm from "@/app/components/common/addBlogForm"
-import {getBlog} from "@/app/utils/database/getTask";
+import {getTask} from "@/app/utils/database/getTask";
 
 export default async function EditBlog({params}){
   const {id} = await params;
-  const blog = await getBlog(id);
+  const blog = await getTask.blog(id);
 
   return(
     <>

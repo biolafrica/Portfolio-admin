@@ -1,9 +1,9 @@
 import AddProjectForm from "@/app/components/common/addProjectForm";
-import { getProject } from "@/app/utils/database/getTask";
+import { getTask } from "@/app/utils/database/getTask";
 
 export default async function EditProject({params}){
   const {id} = await params;
-  const project = await getProject(id);
+  const project = await getTask.project(id);
 
   return(
     <>

@@ -1,32 +1,36 @@
 import { createClient } from "../supabase/server";
 
-export async function getBlogs(){
-  const supabase = await createClient();
+export const getTasks= {
+  supabase: null,
+  
+  async init(){
+    if(!this.supabase){
+      this.supabase = await createClient();
+    }
+  },
 
-  const {data, error} = await supabase
-  .from("Blog")
-  .select()
+  async getAllRow(table){
+    await this.init();
 
-  if(error){
-    console.log('Error fetching blog', error.message)
-    throw new Error("Error fetching blog")
+    const {data, error}= await this.supabase
+    .from(table)
+    .select()
+   
+
+    if (error) {
+      console.log(`error fetching ${table}`, error.message);
+      throw new Error(error);
+    }
+
+    return data;
+
+  },
+
+  async blogs(){
+    return await this.getAllRow("Blog");
+  },
+
+  async projects(){
+    return await this.getAllRow("Project");
   }
-
-  return (data);
-}
-
-export async function getProjects(){
-  const supabase = await createClient();
-
-  const {data, error} = await supabase
-  .from("Project")
-  .select()
-
-  if(error){
-    console.log('Error fetching project', error.message)
-    throw new Error("Error fetching project")
-  }
-
-  return (data);
-
 }
