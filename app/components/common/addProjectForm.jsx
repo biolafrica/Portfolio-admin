@@ -70,6 +70,7 @@ export default function AddProjectForm({project, id}){
 
       if(imageFile || videoFile){
         const {imagePublicUrl, videoPublicUrl} = await handleUpload();
+
         updatedFormData = {
           ...formData,
           image: imagePublicUrl,

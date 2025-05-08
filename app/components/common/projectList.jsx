@@ -24,12 +24,17 @@ export default function ProjectList({projects}){
 
   const [searchTerm, setSearchTerm]= useState("");
   const filteredProjects = projects.filter(project=> (project.title).toLowerCase().includes(searchTerm.toLowerCase()))
-  const {
+  
+  const 
+  {
     currentData, 
     currentPage, 
     totalPages, 
     goToNextPage, 
-    goToPreviousPage} = usePagination(filteredProjects, 5)
+    goToPreviousPage
+  } = usePagination(filteredProjects, 5)
+
+
   return(
 
     <div className="project-cont-body">
